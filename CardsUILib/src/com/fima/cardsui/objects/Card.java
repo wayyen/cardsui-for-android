@@ -1,6 +1,7 @@
 package com.fima.cardsui.objects;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,14 +47,13 @@ public abstract class Card extends AbstractCard {
 
 	@Override
 	public View getView(Context context) {
-
 		View view = LayoutInflater.from(context).inflate(getCardLayout(), null);
 
 		mCardLayout = view;
-
+		View mCardContent = getCardContent(context);
 		try {
 			((FrameLayout) view.findViewById(R.id.cardContent))
-					.addView(getCardContent(context));
+					.addView(mCardContent);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -67,20 +67,19 @@ public abstract class Card extends AbstractCard {
 		lp.setMargins(0, 0, 0, bottom);
 
 		view.setLayoutParams(lp);
-
+		view.setTag(mCardContent.getTag());
 		return view;
 	}
 
 	public View getViewLast(Context context) {
-
 		View view = LayoutInflater.from(context).inflate(getLastCardLayout(),
 				null);
 
 		mCardLayout = view;
-
+		View mCardContent = getCardContent(context);
 		try {
 			((FrameLayout) view.findViewById(R.id.cardContent))
-					.addView(getCardContent(context));
+					.addView(mCardContent);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -94,20 +93,19 @@ public abstract class Card extends AbstractCard {
 		lp.setMargins(0, 0, 0, bottom);
 
 		view.setLayoutParams(lp);
-
+		view.setTag(mCardContent.getTag());
 		return view;
 	}
 
 	public View getViewFirst(Context context) {
-
 		View view = LayoutInflater.from(context).inflate(getFirstCardLayout(),
 				null);
 
 		mCardLayout = view;
-
+		View mCardContent = getCardContent(context);
 		try {
 			((FrameLayout) view.findViewById(R.id.cardContent))
-					.addView(getCardContent(context));
+					.addView(mCardContent);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +119,7 @@ public abstract class Card extends AbstractCard {
 		lp.setMargins(0, 0, 0, bottom);
 
 		view.setLayoutParams(lp);
-
+		view.setTag(mCardContent.getTag());
 		return view;
 	}
 
